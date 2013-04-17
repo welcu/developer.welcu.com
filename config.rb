@@ -1,7 +1,6 @@
 ###
 # Compass
 ###
-require 'bootstrap-sass'
 
 # Susy grids in Compass
 # First: gem install susy
@@ -56,17 +55,9 @@ helpers do
       end
     end
 
-    # raise @_out_buf.inspect
-    # raise block.call.class.name
-    # capture_html(&block)
-    # raise @_out_buf.inspect
-
-     # CodeRay.scan(code, lang).div()
-
-
     code = capture_haml(&block)
 
-    CodeRay.scan(code, lang).div({css: :class, line_numbers: :table, line_number_anchors: false}.merge(options))
+    preserve(CodeRay.scan(code, lang).div({css: :class, line_numbers: :table, line_number_anchors: false}.merge(options)))
   end
 end
 
@@ -75,12 +66,6 @@ set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
-
-activate :syntax
-set :markdown_engine, :redcarpet
-set :markdown, :fenced_code_blocks => true,
-               :autolink => true,
-               :smartypants => true
 
 activate :deploy do |deploy|
   deploy.method = :git
