@@ -1,6 +1,6 @@
 $linkColor: #545390;
 
-$navbarHeight: 110px;
+$navbarHeight: 90px;
 $navbarBackground: #ffffff;
 
 body {
@@ -12,10 +12,11 @@ body {
 }
 
 .brand {
-  width: 173px;
-  height: 98px;
+  width: 130px;
+  height: 74px;
   padding: 0 !important;
   margin: 10px;
+  margin-left: 0 !important;
   background: url(image-path("welcu-purple.png")) no-repeat;
   text-indent: -9999px;
 }
