@@ -19,3 +19,8 @@ body {
   background: url(image-path("welcu-purple.png")) no-repeat;
   text-indent: -9999px;
 }
+
+.welcome {
+  background: url(image-path("welcu-people.png")) no-repeat center;
+  color: #ffffff !important;
+}

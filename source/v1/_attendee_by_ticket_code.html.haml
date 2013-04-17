@@ -4,12 +4,29 @@
   .url /event/attendees/code/:code.json
 
 .description
-  This endpoint allows you to get information about the event including it's
-  company and tickets
+  This endpoint allows you to get the attendee associated to a given ticket code
 
-.example
-  = code do
-    curl -i -H 'Authorization: event TOKEN' https://api.welcu.com/v1/event.json
+  %h5 Available parameters
+  %table.table.table-striped.well
+    %col{width: '20%'}
+    %col{width: '80%'}
+    %thead
+      %tr
+        %th Parameter
+        %th Description
+    %tbody
+      %tr
+        %td code (required)
+        %td
+          The ticket code to query
+
+  .example
+    = code(line_numbers: false) do
+      :plain
+        curl -i -H 'Authorization: event TOKEN' \
+          https://api.welcu.com/v1/event/attendees/code/sc1f5e6.json
+
+  %h5 Response
   = code('json') do
     :plain
       {

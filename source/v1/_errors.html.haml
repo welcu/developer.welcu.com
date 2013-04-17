@@ -1,9 +1,28 @@
 %h4#errors <small>1.3</small> Errors
 
 .description
-  Errors are delivered via <i>HTTP Status Codes</i>.
+  Errors are delivered via <i>HTTP Status Codes</i> along with a JSON payload
+  with the description of the error
 
   %h5 401 Unauthorized
-  %p This code is returned when the event token is wrong/disabled/empty
+  %p
+    This code is returned when the event token is wrong/disabled/empty
+
+    .example
+      = code(line_numbers: false) do
+        curl -i https://api.welcu.com/event.json
+
+      %h6 Response
+      = code(line_numbers: false) do
+        :plain
+          TODO
+
   %h5 404 Not Found
+  %p This code is returned when the API can't find the resource you are querying.
+
+  %h5 406 Not Acceptable
+  %p This code is returned when the change you are trying to perform is not possible
+
   %h5 422 Unprocessable Entity
+  %p This error is returned when there are errors on the parameters given to the API
+

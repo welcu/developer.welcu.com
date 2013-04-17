@@ -11,8 +11,10 @@
     = code(line_numbers: false) do
       Authorization: event HERE_GOES_THE_TOKEN
 
-  %p So for example using curl. Every request must be configured like:
+  %p So for example using curl. Every request must be called like:
 
   .example
-    = code do
-      curl -i -H 'Authorization: event HERE_GOES_THE_TOKEN' https://api.welcu.com/v1/api_method.json
+    = code(line_numbers: false) do
+      :plain
+        curl -i -H 'Authorization: event HERE_GOES_THE_TOKEN' \
+          https://api.welcu.com/v1/api_method.json
