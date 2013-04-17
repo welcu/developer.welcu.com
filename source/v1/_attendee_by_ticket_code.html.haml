@@ -1,0 +1,33 @@
+%h4#attendee_by_ticket_code <small>3.2</small> Get attendee by ticket code
+.meta
+  .method GET
+  .url /event/attendees/code/:code.json
+
+.description
+  This endpoint allows you to get information about the event including it's
+  company and tickets
+
+.example
+  = code do
+    curl -i -H 'Authorization: event TOKEN' https://api.welcu.com/v1/event.json
+  = code('javascript') do
+    :plain
+      {
+        id: 96,
+        first_name: "Seba",
+        last_name: "Gamboa",
+        organization: "Welcu",
+        title: "CTO",
+        email: "seba@welcu.com",
+        phone: null,
+        facebook_uid: "754027414",
+        reference_key: null,
+        tickets: [
+          {
+            code: "Sc1f5e6",
+            ticket_id: 15,
+            checked_at: "2012-11-16T08:27:05-03:00",
+            created_at: "2012-11-07T10:27:16-03:00"
+          }
+        ]
+      }

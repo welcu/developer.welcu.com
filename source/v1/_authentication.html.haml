@@ -1,0 +1,18 @@
+%h4#authentication <small>1.2</small>  Authentication
+
+.description
+  %p
+    This API requires an API token per event.
+    This token can be obtained from the integrations menu of your organization.
+
+  %p
+    Every method of this API require an event token which must be passed in the
+    HTTP request <i>Authorization</i> header like:
+    = code(line_numbers: false) do
+      Authorization: event HERE_GOES_THE_TOKEN
+
+  %p So for example using curl. Every request must be configured like:
+
+  .example
+    = code do
+      curl -i -H 'Authorization: event HERE_GOES_THE_TOKEN' https://api.welcu.com/v1/api_method.json

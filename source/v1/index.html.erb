@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="span3 navigation">
+    <ul class="nav nav-list affix">
+      <li class="nav-header"><small>1</small> Overview</li>
+      <li><a href="#about"><small>1.1</small> About this API</a></li>
+      <li><a href="#authentication"><small>1.2</small> Authentication</a></li>
+      <li><a href="#errors"><small>1.3</small> Errors</a></li>
+      <li class="nav-header"><small>2</small> Event</li>
+      <li><a href="#event"><small>2.1</small> Get event information</a></li>
+      <li class="nav-header"><small>3</small> Attendees</li>
+      <li><a href="#attendees"><small>3.1</small> Get attendee list</a></li>
+      <li><a href="#attendee_by_ticket_code"><small>3.2</small> Get attendee by ticket code</a></li>
+      <li><a href="#ticket_code_check"><small>3.3</small> Check an attendee's ticket</a></li>
+    </ul>
+  </div><!--/span-->
+  <div class="span9">
+
+    <h3><small>1</small> Overview</h3>
+    <%= partial 'about' %>
+    <%= partial 'authentication' %>
+    <%= partial 'errors' %>
+
+    <h3><small>2</small> Event</h3>
+    <%= partial 'event' %>
+
+    <h3><small>3</small> Attendees</h3>
+    <%= partial 'attendees' %>
+    <%= partial 'attendee_by_ticket_code' %>
+    <%= partial 'ticket_code_check' %>
+
+  </div><!--/span-->
+</div><!--/row-->

@@ -1,0 +1,21 @@
+$linkColor: #545390;
+
+$navbarHeight: 110px;
+$navbarBackground: #ffffff;
+
+body {
+  padding-top: $navbarHeight + 20px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
+}
+
+.brand {
+  width: 173px;
+  height: 98px;
+  padding: 0 !important;
+  margin: 10px;
+  background: url(image-path("welcu-purple.png")) no-repeat;
+  text-indent: -9999px;
+}
