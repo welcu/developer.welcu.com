@@ -12,6 +12,11 @@
 
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag  "application" %>
+
+    <meta property="fb:app_id"          content="132119896836620" />
+    <meta property="og:title"           content="<%= data.page.title || "Welcu Developer" %>" />
+    <meta property="og:image"           content="http://developer.welcu.com/<%= image_path('welcu-purple.png') %>" />
+
   </head>
 
   <body class="<%= page_classes %>" data-spy="scroll" data-target=".navigation" data-offset="140">
@@ -19,11 +24,9 @@
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">Welcu Developer</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <!-- <li><a href="/v1">Documentation</a></li> -->
-            </ul>
-          </div><!--/.nav-collapse -->
+          <ul class="nav">
+            <!-- <li><a href="/v1">Documentation</a></li> -->
+          </ul>
         </div>
       </div>
     </div>
