@@ -30,6 +30,11 @@
       %tr
         %td ticket_id (optional)
         %td To filter the attendees with tickets for a given ticket_id
+      %tr
+        %td since (optional)
+        %td
+          An ISO8601 encoded date to filter attendees updated since the given
+          date.
 
   .example
     = code(line_numbers: false) do
