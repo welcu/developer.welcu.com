@@ -1,6 +1,6 @@
 Build & Deploy
 ==============
 
-bundle install
-middleman build
-middleman deploy
+	bundle install  
+	middleman build  
+	middleman deploy  
