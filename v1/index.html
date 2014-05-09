@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Welcu API v1</title>
+
+    <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src="/javascripts/application.js" type="text/javascript"></script>
+
+    <meta property="fb:app_id"          content="132119896836620" />
+    <meta property="og:title"           content="Welcu API v1" />
+    <meta property="og:image"           content="http://developer.welcu.com//images/welcu-purple.png" />
+
+  </head>
+
+  <body class="v1 v1_index" data-spy="scroll" data-target=".navigation" data-offset="140">
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">Welcu Developer</a>
+          <ul class="nav">
+            <!-- <li><a href="/v1">Documentation</a></li> -->
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+  <div class="span3 navigation">
+    <ul class="nav nav-list affix">
+      <li class="nav-header"><small>1</small> Overview</li>
+      <li><a href="#about"><small>1.1</small> About this API</a></li>
+      <li><a href="#authentication"><small>1.2</small> Authentication</a></li>
+      <li><a href="#errors"><small>1.3</small> Errors</a></li>
+      <li class="nav-header"><small>2</small> Event</li>
+      <li><a href="#event"><small>2.1</small> Get event information</a></li>
+      <li class="nav-header"><small>3</small> Attendees</li>
+      <li><a href="#attendees"><small>3.1</small> Get attendee list</a></li>
+      <li><a href="#attendee_by_ticket_code"><small>3.2</small> Get attendee by ticket code</a></li>
+      <li><a href="#ticket_code_check"><small>3.3</small> Check an attendee's ticket</a></li>
+    </ul>
+  </div><!--/span-->
+  <div class="span9">
+
+    <h3><small>1</small> Overview</h3>
+    <h4 id='about'><small>1.1</small> About this API</h4>
+<p>
+  This documentation describes the resources that compose the official Welcu API
+  v1.
+</p>
+<p>
+  This API is currently under development so this document may change as the
+  API evolves. This document source is available at
+  <a href="https://github.com/welcu/developer.welcu.com/tree/master/source/v1">
+  it's GitHub repository</a> and we encourage developers to point out any
+  problem with the API documentation or behavior, as well as any feature
+  suggestion to our <a href="https://github.com/welcu/developer.welcu.com/issues">
+  issue tracker</a>.
+</p>
+
+    <h4 id='authentication'><small>1.2</small>  Authentication</h4>
+<div class='description'>
+  <p>
+    This API requires an API token per event.
+    This token can be obtained from the integrations menu of your organization.
+  </p>
+  <p>
+    Every method of this API require an event token which must be passed in the
+    HTTP request <i>Authorization</i> header like:
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>Authorization: event HERE_GOES_THE_TOKEN&#x000A;</pre></div>&#x000A;</div>
+  </p>
+  <p>So for example using curl. Every request must be called like:</p>
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event HERE_GOES_THE_TOKEN' \&#x000A;  https://api.welcu.com/v1/api_method.json&#x000A;</pre></div>&#x000A;</div>
+  </div>
+</div>
+
+    <h4 id='errors'><small>1.3</small> Errors</h4>
+<div class='description'>
+  Errors are delivered via <i>HTTP Status Codes</i> along with a JSON payload
+  with the description of the error
+  <h5>401 Unauthorized</h5>
+  <p>
+    This code is returned when the event token is wrong/disabled/empty
+    <div class='example'>
+      <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i https://api.welcu.com/v1/event.json&#x000A;</pre></div>&#x000A;</div>
+      <h6>Response</h6>
+      <div class="CodeRay">&#x000A;  <div class="code"><pre>TODO&#x000A;</pre></div>&#x000A;</div>
+    </div>
+  </p>
+  <h5>404 Not Found</h5>
+  <p>This code is returned when the API can't find the resource you are querying.</p>
+  <h5>406 Not Acceptable</h5>
+  <p>This code is returned when the change you are trying to perform is not possible</p>
+  <h5>422 Unprocessable Entity</h5>
+  <p>This error is returned when there are errors on the parameters given to the API</p>
+</div>
+
+
+    <h3><small>2</small> Event</h3>
+    <h4 id='event'><small>2.1</small> Get event information</h4>
+<div class='meta'>
+  <div class='method'>GET</div>
+  <div class='url'>/event.json</div>
+</div>
+<div class='description'>
+  This endpoint allows you to get information about the event including it's
+  company and tickets
+</div>
+<div class='example'>
+  <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;</pre></td>&#x000A;  <td class="code"><pre>curl -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event.json&#x000A;</pre></td>&#x000A;</tr></table>
+  <h5>Response</h5>
+  <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;<strong>20</strong>&#x000A;21&#x000A;22&#x000A;23&#x000A;24&#x000A;25&#x000A;26&#x000A;27&#x000A;28&#x000A;29&#x000A;<strong>30</strong>&#x000A;31&#x000A;32&#x000A;33&#x000A;34&#x000A;35&#x000A;36&#x000A;37&#x000A;38&#x000A;39&#x000A;<strong>40</strong>&#x000A;</pre></td>&#x000A;  <td class="code"><pre>{&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Webprendedor Santiago 2012</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">description</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Webprendedor 2012 reunirá a los emprendedores digitales y quienes quieren comenzar a emprender, para que conozcan experiencias exitosas de startups en Silicon Valley.</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">starts_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-16T09:00:00-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">ends_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-17T18:00:00-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">locale</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">es</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">timezone</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Santiago</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">active</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">url</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">https://welcu.com/webprendedor/santiago2012</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">public</span><span class="delimiter">&quot;</span></span>: <span class="value">true</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>: {&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">venue</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Teatro NESCAFÉ de las Artes</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">address</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Manuel Montt 032</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Providencia</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">country</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">CL</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">lat</span><span class="delimiter">&quot;</span></span>: <span class="float">-33.4285940111406</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">lng</span><span class="delimiter">&quot;</span></span>: <span class="float">-70.6207394599915</span>&#x000A;  },&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">company</span><span class="delimiter">&quot;</span></span>: {&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">2</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Webprendedor</span><span class="delimiter">&quot;</span></span>&#x000A;  },&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">tickets</span><span class="delimiter">&quot;</span></span>: [&#x000A;    {&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Conferencia Santiago 2012</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">starts_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-16T09:00:00-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">ends_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-16T18:00:00-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">location</span><span class="delimiter">&quot;</span></span>: {&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">venue</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Teatro NESCAFÉ de las Artes</span><span class="delimiter">&quot;</span></span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">address</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Manuel Montt 032</span><span class="delimiter">&quot;</span></span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">city</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Providencia</span><span class="delimiter">&quot;</span></span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">country</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">CL</span><span class="delimiter">&quot;</span></span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">lat</span><span class="delimiter">&quot;</span></span>: <span class="float">-33.4285940111406</span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">lng</span><span class="delimiter">&quot;</span></span>: <span class="float">-70.6207394599915</span>&#x000A;      }&#x000A;    }&#x000A;  ]&#x000A;}&#x000A;</pre></td>&#x000A;</tr></table>
+</div>
+
+
+    <h3><small>3</small> Attendees</h3>
+    <h4 id='attendees'><small>3.1</small> Get attendee list</h4>
+<div class='meta'>
+  <div class='method'>GET</div>
+  <div class='url'>/event/attendees[/:state].json</div>
+</div>
+<div class='description'>
+  Using this endpoint you can get the list of attendees along with it's tickets
+  <h5>Available parameters</h5>
+  <table class='table table-striped well'>
+    <col width='30%'>
+    <col width='70%'>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>state (optional)</td>
+        <td>
+          To filter the list by the attendee state.
+          The available states are:
+          <ul>
+            <li>
+              <strong>checked</strong>
+              Filter only attendees with checked tickets
+            </li>
+            <li>
+              <strong>unchecked</strong>
+              Filter only attendees with unchecked tickets
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>ticket_id (optional)</td>
+        <td>To filter the attendees with tickets for a given ticket_id</td>
+      </tr>
+      <tr>
+        <td>since (optional)</td>
+        <td>
+          An ISO8601 encoded date to filter attendees updated since the given
+          date.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/attendees/checked.json&#x000A;</pre></div>&#x000A;</div>
+    <h5>Response</h5>
+    <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;<strong>20</strong>&#x000A;21&#x000A;22&#x000A;23&#x000A;24&#x000A;25&#x000A;</pre></td>&#x000A;  <td class="code"><pre>[&#x000A;  <span class="string"><span class="delimiter">&quot;</span><span class="content"> ... </span><span class="delimiter">&quot;</span></span>&#x000A;&#x000A;  {&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">96</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">first_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Seba</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">last_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Gamboa</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">organization</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcu</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">CTO</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">seba@welcu.com</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">phone</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">facebook_uid</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">754027414</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">reference_key</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">tickets</span><span class="delimiter">&quot;</span></span>: [&#x000A;      {&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Sc1f5e6</span><span class="delimiter">&quot;</span></span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">checked_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-16T08:27:05-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">created_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-07T10:27:16-03:00</span><span class="delimiter">&quot;</span></span>&#x000A;      }&#x000A;    ]&#x000A;  },&#x000A;&#x000A;  <span class="string"><span class="delimiter">&quot;</span><span class="content"> ... </span><span class="delimiter">&quot;</span></span>&#x000A;]&#x000A;</pre></td>&#x000A;</tr></table>
+  </div>
+</div>
+
+    <h4 id='attendee_by_ticket_code'><small>3.2</small> Get attendee by ticket code</h4>
+<div class='meta'>
+  <div class='method'>GET</div>
+  <div class='url'>/event/attendees/code/:code.json</div>
+</div>
+<div class='description'>
+  This endpoint allows you to get the attendee associated to a given ticket code
+  <h5>Available parameters</h5>
+  <table class='table table-striped well'>
+    <col width='20%'>
+    <col width='80%'>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>code (required)</td>
+        <td>
+          The ticket code to query
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/attendees/code/sc1f5e6.json&#x000A;</pre></div>&#x000A;</div>
+  </div>
+  <h5>Response</h5>
+  <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;</pre></td>&#x000A;  <td class="code"><pre>{&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">96</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">first_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Seba</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">last_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Gamboa</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">organization</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcu</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">CTO</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">seba@welcu.com</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">phone</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">facebook_uid</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">754027414</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">reference_key</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">tickets</span><span class="delimiter">&quot;</span></span>: [&#x000A;    {&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Sc1f5e6</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">checked_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-16T08:27:05-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">created_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-07T10:27:16-03:00</span><span class="delimiter">&quot;</span></span>&#x000A;    }&#x000A;  ]&#x000A;}&#x000A;</pre></td>&#x000A;</tr></table>
+</div>
+
+    <h4 id='ticket_code_check'><small>3.3</small> Check an attendee's ticket</h4>
+<div class='meta'>
+  <div class='method'>POST</div>
+  <div class='url'>/event/attendees/code/:code/check.json</div>
+</div>
+<div class='description'>
+  This endpoint allows you to get information about the event including it's
+  company and tickets
+  <h5>Available parameters</h5>
+  <table class='table table-striped well'>
+    <col width='30%'>
+    <col width='70%'>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>at (optional)</td>
+        <td>
+          An ISO8601 encoded date to specify at which time the ticket was
+          checked. The current time is used if left blank.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  -d 'at=2012-11-16T08:27:05-03:00' \&#x000A;  https://api.welcu.com/v1/event/attendees/code/sc1f5e6/check.json&#x000A;</pre></div>&#x000A;</div>
+    <h5>Response</h5>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>HTTP/1.1 202 Accepted&#x000A;Content-Type: application/json; charset=utf-8&#x000A;Cache-Control: no-cache&#x000A;Connection: close&#x000A;</pre></div>&#x000A;</div>
+  </div>
+</div>
+
+
+  </div><!--/span-->
+</div><!--/row-->
+
+
+      <hr>
+
+      <footer>
+        <p>© <a href="https://welcu.com">Welcu</a> 2013</p>
+      </footer>
+    </div>
+  </body>
+</html>
