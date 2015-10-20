@@ -1,0 +1,66 @@
+%h4#list_invitations <small>4.1</small> Get invitations
+.meta
+  .method GET
+  .url /event/invitations.json
+
+.description
+  Using this endpoint you can get the list of attendees along with it's tickets
+
+  / %h5 Available parameters
+  / %table.table.table-striped.well
+  /   %col{width: '30%'}
+  /   %col{width: '70%'}
+  /   %thead
+  /     %tr
+  /       %th Parameter
+  /       %th Description
+  /   %tbody
+  /     %tr
+  /       %td state (optional)
+  /       %td
+  /         To filter the list by the attendee state.
+  /         The available states are:
+  /         %ul
+  /           %li
+  /             %strong checked
+  /             Filter only attendees with checked tickets
+  /           %li
+  /             %strong unchecked
+  /             Filter only attendees with unchecked tickets
+  /     %tr
+  /       %td ticket_id (optional)
+  /       %td To filter the attendees with tickets for a given ticket_id
+  /     %tr
+  /       %td since (optional)
+  /       %td
+  /         An ISO8601 encoded date to filter attendees updated since the given
+  /         date.
+
+  .example
+    = code(line_numbers: false) do
+      :plain
+        curl -i -H 'Authorization: event TOKEN' \
+          https://api.welcu.com/v1/event/invitations.json
+
+    %h5 Response
+    = code('json') do
+      :plain
+        [
+          " ... "
+          {
+            "id": 1462,
+            "name": "2015 clients",
+            "email_subject": "Invitation for Webprendedor Santiago 2016",
+            "event_id": 15,
+            "sender_email": "rsvp@welcu.com",
+            "sender_name": "Welcu Inc.",
+            "sent_at": "2015-12-28T17:50:53-03:00",
+            "stats": {
+                "confirmed": 20,
+                "declined": 1,
+                "pending": 10
+            },
+            "ticket_id": 15
+          },
+          " ... "
+        ]

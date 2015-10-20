@@ -1,0 +1,57 @@
+%h4#list_recipients <small>4.1</small> Get invitation recipients
+.meta
+  .method GET
+  .url /event/invitations/:invitation_id/recipients.json
+
+.description
+  Using this endpoint you can get the list of recipients from an invitation
+
+  %h5 Available parameters
+  %table.table.table-striped.well
+    %col{width: '30%'}
+    %col{width: '70%'}
+    %thead
+      %tr
+        %th Parameter
+        %th Description
+    %tbody
+      %tr
+        %td invitation_id
+        %td
+          To filter the list by invitation. If you don't want to filter by invitation, use invitation_id = all
+      %tr
+        %td state (optional)
+        %td To filter the recipients by their state (confirmed, declined, pending)
+      %tr
+        %td first_name (optional)
+        %td To filter the recipients by first name
+      %tr
+        %td last_name (optional)
+        %td To filter the recipients by last name
+      %tr
+        %td first_name (optional)
+        %td To filter the recipients by email
+
+  .example
+    = code(line_numbers: false) do
+      :plain
+        curl -i -H 'Authorization: event TOKEN' \
+          https://api.welcu.com/v1/event/invitations/1462/recipients.json
+
+    %h5 Response
+    = code('json') do
+      :plain
+        [
+          " ... "
+          {
+              "id": 974534,
+              "invitation_id": 1462,
+              "email": "recipient1@welcu.com",
+              "first_name": "John",
+              "last_name": "Doe",
+              "state": "declined",
+              "ticket_code": null,
+              "ticket_url": null
+          },
+          " ... "
+        ]

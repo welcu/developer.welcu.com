@@ -15,6 +15,10 @@ title: Welcu API v1
       <li><a href="#attendees"><small>3.1</small> Get attendee list</a></li>
       <li><a href="#attendee_by_ticket_code"><small>3.2</small> Get attendee by ticket code</a></li>
       <li><a href="#ticket_code_check"><small>3.3</small> Check an attendee's ticket</a></li>
+      <li class="nav-header"><small>4</small> Invitations</li>
+      <li><a href="#list_invitations"><small>4.1</small> Get invitations</a></li>
+      <li><a href="#list_recipients"><small>4.2</small> Get invitation recipients</a></li>
+      <li><a href="#recipient_actions"><small>4.3</small> Recipient actions</a></li>
     </ul>
   </div><!--/span-->
   <div class="span9">
@@ -31,6 +35,11 @@ title: Welcu API v1
     <%= partial 'attendees' %>
     <%= partial 'attendee_by_ticket_code' %>
     <%= partial 'ticket_code_check' %>
+
+    <h3><small>4</small> Invitations</h3>
+    <%= partial 'list_invitations' %>
+    <%= partial 'list_recipients' %>
+    <%= partial 'recipient_actions' %>
 
   </div><!--/span-->
 </div><!--/row-->
