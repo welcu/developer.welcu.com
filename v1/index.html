@@ -45,6 +45,10 @@
       <li><a href="#attendees"><small>3.1</small> Get attendee list</a></li>
       <li><a href="#attendee_by_ticket_code"><small>3.2</small> Get attendee by ticket code</a></li>
       <li><a href="#ticket_code_check"><small>3.3</small> Check an attendee's ticket</a></li>
+      <li class="nav-header"><small>4</small> Invitations</li>
+      <li><a href="#list_invitations"><small>4.1</small> Get invitations</a></li>
+      <li><a href="#list_recipients"><small>4.2</small> Get invitation recipients</a></li>
+      <li><a href="#recipient_actions"><small>4.3</small> Recipient actions</a></li>
     </ul>
   </div><!--/span-->
   <div class="span9">
@@ -208,7 +212,7 @@
     </tbody>
   </table>
   <div class='example'>
-    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/attendees/code/sc1f5e6.json&#x000A;</pre></div>&#x000A;</div>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/attendees/code/SC1F5E6.json&#x000A;</pre></div>&#x000A;</div>
   </div>
   <h5>Response</h5>
   <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;</pre></td>&#x000A;  <td class="code"><pre>{&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">96</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">first_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Seba</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">last_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Gamboa</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">organization</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcu</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">title</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">CTO</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">seba@welcu.com</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">phone</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">facebook_uid</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">754027414</span><span class="delimiter">&quot;</span></span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">reference_key</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;  <span class="key"><span class="delimiter">&quot;</span><span class="content">tickets</span><span class="delimiter">&quot;</span></span>: [&#x000A;    {&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">code</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">SC1F5E6</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">checked_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-16T08:27:05-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">created_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2012-11-07T10:27:16-03:00</span><span class="delimiter">&quot;</span></span>&#x000A;    }&#x000A;  ]&#x000A;}&#x000A;</pre></td>&#x000A;</tr></table>
@@ -245,6 +249,154 @@
     <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  -d 'at=2012-11-16T08:27:05-03:00' \&#x000A;  https://api.welcu.com/v1/event/attendees/code/SC1F5E6/check.json&#x000A;</pre></div>&#x000A;</div>
     <h5>Response</h5>
     <div class="CodeRay">&#x000A;  <div class="code"><pre>HTTP/1.1 202 Accepted&#x000A;Content-Type: application/json; charset=utf-8&#x000A;Cache-Control: no-cache&#x000A;Connection: close&#x000A;</pre></div>&#x000A;</div>
+  </div>
+</div>
+
+
+    <h3><small>4</small> Invitations</h3>
+    <h4 id='list_invitations'><small>4.1</small> Get invitations</h4>
+<div class='meta'>
+  <div class='method'>GET</div>
+  <div class='url'>/event/invitations.json</div>
+</div>
+<div class='description'>
+  Using this endpoint you can get the list of attendees along with it's tickets
+  <!-- %h5 Available parameters -->
+  <!-- %table.table.table-striped.well -->
+  <!-- %col{width: '30%'} -->
+  <!-- %col{width: '70%'} -->
+  <!-- %thead -->
+  <!-- %tr -->
+  <!-- %th Parameter -->
+  <!-- %th Description -->
+  <!-- %tbody -->
+  <!-- %tr -->
+  <!-- %td state (optional) -->
+  <!-- %td -->
+  <!-- To filter the list by the attendee state. -->
+  <!-- The available states are: -->
+  <!-- %ul -->
+  <!-- %li -->
+  <!-- %strong checked -->
+  <!-- Filter only attendees with checked tickets -->
+  <!-- %li -->
+  <!-- %strong unchecked -->
+  <!-- Filter only attendees with unchecked tickets -->
+  <!-- %tr -->
+  <!-- %td ticket_id (optional) -->
+  <!-- %td To filter the attendees with tickets for a given ticket_id -->
+  <!-- %tr -->
+  <!-- %td since (optional) -->
+  <!-- %td -->
+  <!-- An ISO8601 encoded date to filter attendees updated since the given -->
+  <!-- date. -->
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/invitations.json&#x000A;</pre></div>&#x000A;</div>
+    <h5>Response</h5>
+    <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;</pre></td>&#x000A;  <td class="code"><pre>[&#x000A;  <span class="string"><span class="delimiter">&quot;</span><span class="content"> ... </span><span class="delimiter">&quot;</span></span>&#x000A;  {&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">1462</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2015 clients</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">email_subject</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Invitation for Webprendedor Santiago 2016</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">event_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">sender_email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">rsvp@welcu.com</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">sender_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Welcu Inc.</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">sent_at</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2015-12-28T17:50:53-03:00</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">stats</span><span class="delimiter">&quot;</span></span>: {&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">confirmed</span><span class="delimiter">&quot;</span></span>: <span class="integer">20</span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">declined</span><span class="delimiter">&quot;</span></span>: <span class="integer">1</span>,&#x000A;        <span class="key"><span class="delimiter">&quot;</span><span class="content">pending</span><span class="delimiter">&quot;</span></span>: <span class="integer">10</span>&#x000A;    },&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">15</span>&#x000A;  },&#x000A;  <span class="string"><span class="delimiter">&quot;</span><span class="content"> ... </span><span class="delimiter">&quot;</span></span>&#x000A;]&#x000A;</pre></td>&#x000A;</tr></table>
+  </div>
+</div>
+
+    <h4 id='list_recipients'><small>4.1</small> Get invitation recipients</h4>
+<div class='meta'>
+  <div class='method'>GET</div>
+  <div class='url'>/event/invitations/:invitation_id/recipients.json</div>
+</div>
+<div class='description'>
+  Using this endpoint you can get the list of recipients from an invitation
+  <h5>Available parameters</h5>
+  <table class='table table-striped well'>
+    <col width='30%'>
+    <col width='70%'>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>invitation_id</td>
+        <td>
+          To filter the list by invitation. If you don't want to filter by invitation, use invitation_id = all
+        </td>
+      </tr>
+      <tr>
+        <td>state (optional)</td>
+        <td>To filter the recipients by their state (confirmed, declined, pending)</td>
+      </tr>
+      <tr>
+        <td>first_name (optional)</td>
+        <td>To filter the recipients by first name</td>
+      </tr>
+      <tr>
+        <td>last_name (optional)</td>
+        <td>To filter the recipients by last name</td>
+      </tr>
+      <tr>
+        <td>first_name (optional)</td>
+        <td>To filter the recipients by email</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/invitations/1462/recipients.json&#x000A;</pre></div>&#x000A;</div>
+    <h5>Response</h5>
+    <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;</pre></td>&#x000A;  <td class="code"><pre>[&#x000A;  <span class="string"><span class="delimiter">&quot;</span><span class="content"> ... </span><span class="delimiter">&quot;</span></span>&#x000A;  {&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">974534</span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">invitation_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">1462</span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">recipient1@welcu.com</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">first_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">John</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">last_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Doe</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">declined</span><span class="delimiter">&quot;</span></span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_code</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;      <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_url</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>&#x000A;  },&#x000A;  <span class="string"><span class="delimiter">&quot;</span><span class="content"> ... </span><span class="delimiter">&quot;</span></span>&#x000A;]&#x000A;</pre></td>&#x000A;</tr></table>
+  </div>
+</div>
+
+    <h4 id='list_invitations'><small>4.3</small> Recipient actions</h4>
+<div class='meta'>
+  <div class='method'>POST</div>
+  <div class='url'>/event/invitations/:invitation_id/recipients/:recipient_id/:action.json</div>
+</div>
+<div class='description'>
+  Using this endpoint you can confirm or decline a recipient
+  <h5>Available parameters</h5>
+  <table class='table table-striped well'>
+    <col width='30%'>
+    <col width='70%'>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>:action</td>
+        <td>
+          The action to perform.
+          The available actions are:
+          <ul>
+            <li>
+              <strong>confirm</strong>
+              Confirm the recipient
+            </li>
+            <li>
+              <strong>unchecked</strong>
+              Decline the recipient
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>:recipient_id</td>
+        <td>The recipient's ID.</td>
+      </tr>
+      <tr>
+        <td>:invitation_id</td>
+        <td>
+          Filter by invitation. If you don't want to filter by invitation, use invitation_id = all.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='example'>
+    <div class="CodeRay">&#x000A;  <div class="code"><pre>curl -X POST -i -H 'Authorization: event TOKEN' \&#x000A;  https://api.welcu.com/v1/event/invitations/1462/recipients/974534/decline.json&#x000A;</pre></div>&#x000A;</div>
+    <h5>Response</h5>
+    <table class="CodeRay"><tr>&#x000A;  <td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre>1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;<strong>10</strong>&#x000A;</pre></td>&#x000A;  <td class="code"><pre>{&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">id</span><span class="delimiter">&quot;</span></span>: <span class="integer">974534</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">invitation_id</span><span class="delimiter">&quot;</span></span>: <span class="integer">1462</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">email</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">recipient1@welcu.com</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">first_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">John</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">last_name</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">Doe</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">state</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">declined</span><span class="delimiter">&quot;</span></span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_code</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>,&#x000A;    <span class="key"><span class="delimiter">&quot;</span><span class="content">ticket_url</span><span class="delimiter">&quot;</span></span>: <span class="value">null</span>&#x000A;}&#x000A;</pre></td>&#x000A;</tr></table>
   </div>
 </div>
 
